@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dog Breed Predictor</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <h1 class="heading">PupPredict</h1>
+            <input type="file" id="inputImage" accept="image/*">
+            <div class="box">
+                <img id="outputImage" src="" alt="Predicted Image" style="display: none;">
+            </div>   
+            <div id="outputText">Predicted Class: </div>
+            <div id="confidence">Confidence: </div>
+            <button type="button" class="btn btn-primary" id="refreshButton">Refresh</button>
+            <a id="learnMoreButton" href="#" target="_blank">Learn More at Wikipedia</a>
+            <div class="me">Developed by Enuganti Sai Sashank</div> 
+        </div>
+    </div>
+
+    <!-- Load TensorFlow.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script> -->
+    <script src="
+    https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.11.0/dist/tf.min.js
+    "></script>
+
+    <script>
+        // Load your TSJF model from a folder (replace 'modelFolderURL' with your folder's URL)
+        const modelFolderURL = 'tsjf_model5/';
+
+        // Load the model using the model.json file in the folder
+        async function loadModel() {
+            const model = await tf.loadLayersModel(modelFolderURL + 'model.json');
+
+            // Load class names (replace with your own class names)
+            const classNames = ['Chihuahua',
+                                'Japanese_spaniel',
+                                'Maltese_dog',
+                                'Pekinese',
+                                'Shih-Tzu',
+                                'Blenheim_spaniel',
+                                'papillon',
+                                'toy_terrier',
+                                'Rhodesian_ridgeback',
+                                'Afghan_hound',
+                                'basset',
+                                'beagle',
+                                'bloodhound',
+                                'bluetick',
+                                'black-and-tan_coonhound',
+                                'Walker_hound',
+                                'English_foxhound',
+                                'redbone',
+                                'borzoi',
+                                'Irish_wolfhound',
+                                'Italian_greyhound',
+                                'whippet',
+                                'Ibizan_hound',
+                                'Norwegian_elkhound',
+                                'otterhound',
+                                'Saluki',
+                                'Scottish_deerhound',
+                                'Weimaraner',
+                                'Staffordshire_bullterrier',
+                                'American_Staffordshire_terrier',
+                                'Bedlington_terrier',
+                                'Border_terrier',
+                                'Kerry_blue_terrier',
+                                'Irish_terrier',
+                                'Norfolk_terrier',
+                                'Norwich_terrier',
+                                'Yorkshire_terrier',
+                                'wire-haired_fox_terrier',
+                                'Lakeland_terrier',
+                                'Sealyham_terrier',
+                                'Airedale',
+                                'cairn',
+                                'Australian_terrier',
+                                'Dandie_Dinmont',
+                                'Boston_bull',
+                                'miniature_schnauzer',
+                                'giant_schnauzer',
+                                'standard_schnauzer',
+                                'Scotch_terrier',
+                                'Tibetan_terrier',
+                                'silky_terrier',
+                                'soft-coated_wheaten_terrier',
+                                'West_Highland_white_terrier',
+                                'Lhasa',
+                                'flat-coated_retriever',
+                                'curly-coated_retriever',
+                                'golden_retriever',
+                                'Labrador_retriever',
+                                'Chesapeake_Bay_retriever',
+                                'German_short-haired_pointer',
+                                'vizsla',
+                                'English_setter',
+                                'Irish_setter',
+                                'Gordon_setter',
+                                'Brittany_spaniel',
+                                'clumber',
+                                'English_springer',
+                                'Welsh_springer_spaniel',
+                                'cocker_spaniel',
+                                'Sussex_spaniel',
+                                'Irish_water_spaniel',
+                                'kuvasz',
+                                'schipperke',
+                                'groenendael',
+                                'malinois',
+                                'briard',
+                                'kelpie',
+                                'komondor',
+                                'Old_English_sheepdog',
+                                'Shetland_sheepdog',
+                                'collie',
+                                'Border_collie',
+                                'Bouvier_des_Flandres',
+                                'Rottweiler',
+                                'German_shepherd',
+                                'Doberman',
+                                'miniature_pinscher',
+                                'Greater_Swiss_Mountain_dog',
+                                'Bernese_mountain_dog',
+                                'Appenzeller',
+                                'EntleBucher',
+                                'boxer',
+                                'bull_mastiff',
+                                'Tibetan_mastiff',
+                                'French_bulldog',
+                                'Great_Dane',
+                                'Saint_Bernard',
+                                'Eskimo_dog',
+                                'malamute',
+                                'Siberian_husky',
+                                'affenpinscher',
+                                'basenji',
+                                'pug',
+                                'Leonberg',
+                                'Newfoundland',
+                                'Great_Pyrenees',
+                                'Samoyed',
+                                'Pomeranian',
+                                'chow',
+                                'keeshond',
+                                'Brabancon_griffon',
+                                'Pembroke',
+                                'Cardigan',
+                                'toy_poodle',
+                                'miniature_poodle',
+                                'standard_poodle',
+                                'Mexican_hairless',
+                                'dingo',
+                                'dhole',
+                                'African_hunting_dog']; // Replace with your actual class names
+
+            // Function to preprocess the input image
+            function preprocessImage(image) {
+                // Resize the image to match the model's input size (e.g., 224x224)
+                const resizedImage = tf.image.resizeBilinear(image, [299, 299]);
+
+                // Normalize pixel values to [0, 1]
+                const normalizedImage = resizedImage.div(255.0);
+
+                // Add a batch dimension and return the preprocessed image
+                return normalizedImage.expandDims(0);
+            }
+
+            // Function to handle the image input change event
+            document.getElementById('inputImage').addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = async (event) => {
+                        const img = new Image();
+                        img.src = event.target.result;
+                        img.onload = async () => {
+                            const image = tf.browser.fromPixels(img);
+                            const preprocessedImage = preprocessImage(image);
+
+                            // Make predictions
+                            const predictions = await model.predict(preprocessedImage).data();
+
+                            // Find the class with the highest probability
+                            const predictedClassIndex = predictions.indexOf(Math.max(...predictions));
+
+                            // Get the class name and confidence score
+                            const predictedClassName = classNames[predictedClassIndex];
+                            const confidenceScore = predictions[predictedClassIndex];
+
+                            // Display the predicted class and confidence
+                            const outputText = document.getElementById('outputText');
+                            outputText.textContent = `Predicted Class: ${predictedClassName}`;
+
+                            const confidenceElement = document.getElementById('confidence');
+                            confidenceElement.textContent = `Confidence: ${confidenceScore.toFixed(2)*100}%`;
+
+                            // Display the input image
+                            const outputImage = document.getElementById('outputImage');
+                            outputImage.style.display = 'block';
+                            outputImage.src = event.target.result;
+
+                            const learnMoreButton = document.getElementById('learnMoreButton');
+                            learnMoreButton.href = getWikipediaLink(predictedClassName);
+                        };
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Function to reset the output
+            function resetOutput() {
+                document.getElementById('outputText').textContent = 'Predicted Class: ';
+                document.getElementById('confidence').textContent = 'Confidence: ';
+                const outputImage = document.getElementById('outputImage');
+                outputImage.style.display = 'none';
+                outputImage.src = '';
+                document.getElementById('inputImage').value = ''; // Clear the file input
+            }
+
+            function getWikipediaLink(className) {
+                // Replace spaces with underscores and create a link
+                return `https://en.wikipedia.org/wiki/${className.replace(/ /g, '_')}`;
+            }
+
+            // Add event listener to the refresh button
+            const refreshButton = document.getElementById('refreshButton');
+            refreshButton.addEventListener('click', resetOutput);
+        }
+
+        // Call the loadModel function to start loading the model
+        loadModel().catch(error => {
+            console.error('Failed to load model:', error);
+        });
+    </script>
+</body>
+</html>
