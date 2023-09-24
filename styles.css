@@ -2,7 +2,7 @@
 
 @media only screen and (max-width: 43em){
     *{
-        font-size: 11px ;
+        font-size: 13px ;
     }
     .main{
         width: 90vw !important;
@@ -19,30 +19,30 @@
 
 @media only screen and (min-width: 43.01em) and (max-width: 65em) and (min-height: 60em) {
     *{
-        font-size: 14px;
+        font-size: 17px;
     }
     .main{
-        width: 75vw !important;
+        width: 82vw !important;
     }
     .box{
         /* min-height: 70vh !important; */
-        max-width: 50vw !important;
+        max-width: 60vw !important;
 
     }
     /* .heading{
-        color: #212121 !important;
+        color: #5bff09 !important;
     } */
 }
 
 @media only screen and (min-width: 43.01em) and (max-height: 60em) {
     *{
-        font-size: 15px;
+        font-size: 16.5px;
     }
     .main{
         width: 75vw !important;
     }
     .box{
-        max-height: 30vh !important;
+        max-height: 25vh !important;
         /* max-width: 100% !important; */
     }
     /* .heading{
@@ -60,7 +60,7 @@
 
 /* Set a background color */
 body {
-    overflow: hidden;
+    /* overflow: hidden; */
     background: url("bg.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
