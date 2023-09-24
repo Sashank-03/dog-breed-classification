@@ -10,7 +10,7 @@
     .box{
         /* min-height: 50vh !important; */
         /* max-width: 50vw !important; */
-        max-height: 40vh !important;
+        max-height: 22vh !important;
         max-width: 70vw !important;
 
     }
@@ -21,13 +21,13 @@
 
 @media only screen and (min-width: 43.01em) and (max-width: 65em) and (min-height: 60em) {
     *{
-        font-size: 15.5px;
+        font-size: 20px;
     }
     .main{
         width: 90vw !important;
     }
     .box{
-        max-height: 35vh !important;
+        max-height: 22vh !important;
         max-width: 70vw !important;
 
     }
@@ -38,7 +38,7 @@
 
 @media only screen and (min-width: 43.01em) and (max-height: 60em) {
     *{
-        font-size: 14.5px;
+        font-size: 18px;
     }
     .main{
         width: 75vw !important;
@@ -46,7 +46,7 @@
     .box{
         /* max-height: 25vh !important; */
         /* max-width: 100% !important; */
-        max-height: 30vh !important;
+        max-height: 23vh !important;
         max-width: 70vw !important;
     }
     /* .heading{
