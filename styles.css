@@ -108,12 +108,25 @@ body {
     border-radius: 2rem;
 }
 
+.title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Style the header */
 .heading{
     font-size: 2.25rem;
     font-weight: 700;
     /* margin-bottom: 1.25rem; */
     color: whitesmoke;
+}
+
+.tagline{
+    color: rgba(245, 245, 245, 0.859);
+    font-size: 0.75rem;
+
 }
 
 /* Style the file input */
