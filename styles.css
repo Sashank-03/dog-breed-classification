@@ -120,7 +120,7 @@
         font-size: 19px;
     }
     .main{
-        width: 85   vw !important;
+        width: 85vw !important;
         gap: 2rem !important;
     }
     .box{
@@ -134,7 +134,7 @@
  
 @media all and (max-width: 480px) and (orientation: portrait) {
     *{
-        font-size: 13   px;
+        font-size: 13px;
     }
     .main{
         width: 90vw !important;
