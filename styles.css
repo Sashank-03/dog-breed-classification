@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-@media only screen and (max-width: 43em){
+/* @media only screen and (max-width: 43em){
     *{
         font-size: 14px ;
     }
@@ -8,15 +8,14 @@
         width: 90vw !important;
     }
     .box{
-        /* min-height: 50vh !important; */
-        /* max-width: 50vw !important; */
+
         max-height: 20vh !important;
         max-width: 70vw !important;
 
     }
-    /* .heading{
+    .heading{
         color: #5029ff !important;
-    } */
+    }
 }
 
 @media only screen and (min-width: 43.01em) and (max-width: 65em) and (min-height: 60em) {
@@ -31,9 +30,9 @@
         max-width: 70vw !important;
 
     }
-    /* .heading{
+    .heading{
         color: #5bff09 !important;
-    } */
+    }
 }
 
 @media only screen and (min-width: 43.01em) and (max-height: 60em) {
@@ -44,15 +43,114 @@
         width: 75vw !important;
     }
     .box{
-        /* max-height: 25vh !important; */
-        /* max-width: 100% !important; */
         max-height: 20vh !important;
         max-width: 70vw !important;
     }
-    /* .heading{
+    .heading{
         color: #ff1f1f !important;
-    } */
+    }
+} */
+
+@media all and (min-width: 1280px) { 
+    *{
+        font-size: 22px;
+    }
+    .main{
+        width: 65vw !important;
+    }
+    .box{
+        max-height: 25vh !important;
+        max-width: 70vw !important;
+    }
+    .heading{
+        /* color: #0044ff !important; */
+    }
 }
+
+@media all and (min-width: 1024px) and (max-width: 1280px) {
+    *{
+        font-size: 17px;
+    }
+    .main{
+        width: 75vw !important;
+    }
+    .box{
+        max-height: 25vh !important;
+        max-width: 70vw !important;
+    }
+    .heading{
+        /* color: #ff1f1f !important; */
+    }
+ }
+ 
+@media all and (min-width: 768px) and (max-width: 1024px) {
+    *{
+        font-size: 15px;
+    }
+    .main{
+        width: 80vw !important;
+    }
+    .box{
+        max-height: 25vh !important;
+        max-width: 70vw !important;
+    }
+    .heading{
+        /* color: #00ff33 !important; */
+    }
+ }
+@media all and (min-width: 768px) and (max-width: 1024px) and (orientation:portrait) {
+    *{
+        font-size: 22px;
+    }
+    .main{
+        width: 90vw !important;
+        gap: 2rem !important;
+    }
+    .box{
+        max-height: 25vh !important;
+        max-width: 70vw !important;
+    }
+    .heading{
+        /* color: #ffee00 !important; */
+    }
+ }
+ 
+@media all and (min-width: 480px) and (max-width: 768px) and (orientation: portrait) {
+    *{
+        font-size: 19px;
+    }
+    .main{
+        width: 85   vw !important;
+        gap: 2rem !important;
+    }
+    .box{
+        max-height: 25vh !important;
+        max-width: 70vw !important;
+    }
+    .heading{
+        /* color: #fb00ff !important; */
+    }
+ }
+ 
+@media all and (max-width: 480px) and (orientation: portrait) {
+    *{
+        font-size: 13   px;
+    }
+    .main{
+        width: 90vw !important;
+        gap: 2rem !important;
+    }
+    .box{
+        max-height: 30vh !important;
+        max-width: 65vw !important;
+    }
+    .heading{
+        /* color: #00ff1e !important; */
+    }
+    .input{
+        flex-direction: column  !important  ;
+    }
+ }
 
 /* Reset default margin and padding */
 *{
@@ -66,9 +164,9 @@
 body {
     /* overflow: hidden; */
     background: url("bg.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
+  /* -webkit-background-size: cover;
   -moz-background-size: cover;
-  -o-background-size: cover;
+  -o-background-size: cover; */
   background-size: cover;
 }
 
@@ -125,12 +223,13 @@ body {
     font-weight: 700;
     /* margin-bottom: 1.25rem; */
     color: whitesmoke;
+    margin: 0;
 }
 
 .tagline{
     color: rgba(245, 245, 245, 0.859);
     font-size: 0.75rem;
-
+    margin: 0;
 }
 
 /* Style the file input */
@@ -161,6 +260,12 @@ body {
     /* margin-top: 1.25rem; */
     color: whitesmoke;
 }
+.output{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
 
 /* Style the confidence text */
 #confidence {
@@ -177,23 +282,32 @@ body {
     border: 0.063rem solid #ccc;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
     border-radius: 0.313rem;
+    /* aspect-ratio: auto; */
+    object-fit: cover;
+}
+
+.input{
+    display: flex;
+    gap: 1rem;
 }
 
 .box{
     /* max-width: 60vw;
     max-height: 40vh; */
-    object-fit: contain;
+    /* object-fit: contain; */
 }
 
 .me{
     color: #000000;
-    position: fixed;
-    bottom: 5vh;
+    /* position: fixed;
+    bottom: 5vh; */
+    margin-top: 1rem;
 }
 
 #learnMoreButton{
     color: #000000;
     font-weight: 600;
+    font-size: 1.35rem;
 }
 
 .loading-screen {

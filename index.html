@@ -14,13 +14,21 @@
                 <h1 class="heading">Pawspective</h1>
                 <p class="tagline">A Dog Breed Predictor</p>
             </div>
-            <input type="file" id="inputImage" accept="image/*">
+            <div class="input">
+                <input type="file" id="inputImage" accept="image/*">
+                <button type="button" class="btn btn-primary" id="refreshButton">Refresh</button>
+
+            </div>
+
             <div class="box">
                 <img id="outputImage" src="" alt="Predicted Image" style="display: none;">
-            </div>   
-            <div id="outputText">Predicted Class: </div>
-            <div id="confidence">Confidence: </div>
-            <button type="button" class="btn btn-primary" id="refreshButton">Refresh</button>
+            </div>  
+            <div class="output">
+                <div id="outputText">Predicted Class: </div>
+                <div id="confidence">Confidence: </div>
+
+            </div> 
+            <!-- <button type="button" class="btn btn-primary" id="refreshButton">Refresh</button> -->
             <a id="learnMoreButton" href="#" target="_blank">Wikipedia</a>
             <div class="me">Developed by Enuganti Sai Sashank</div> 
         </div>
